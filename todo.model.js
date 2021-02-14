@@ -1,17 +1,28 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-let Todo = new Schema({
-    todo_description: {
-        type: String
-    },
-    todo_responsible: {
-        type: String
-    },
-    todo_priority: {
-        type: String
-    },
-    todo_completed: {
-        type: Boolean
-    }
+
+const Todo = new Schema({
+    todo_description: String,
+    todo_responsible: String,
+    todo_priority: String,
+    todo_completed: Boolean,
+    people: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
 });
+
+const Project = Schema({
+  title: String,
+  description: String,
+  tasks: [{ type: Schema.Types.ObjectId, ref: 'Todo' }],
+  people: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
+});
+
+const Person = Schema({
+  name: String,
+  bio: String,
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+  tasks: [{ type: Schema.Types.ObjectId, ref: 'Todo' }]
+});
+
 module.exports = mongoose.model('Todo', Todo);
+module.exports = mongoose.model('Project', Project);
+module.exports = mongoose.model('Person', Person);

@@ -5,8 +5,7 @@ const Todo = new Schema({
     todo_description: String,
     todo_responsible: String,
     todo_priority: String,
-    todo_completed: Boolean,
-    people: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
+    todo_completed: Boolean
 });
 
 const Project = Schema({

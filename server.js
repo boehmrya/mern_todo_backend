@@ -64,6 +64,17 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 
+todoRoutes.route('/delete/:id').post(function(req, res) {
+    Todo.findOneAndDelete(req.params.id, function(err, todo) {
+      if (err) {
+        console.log(err)
+      }
+      else{
+        console.log("Deleted Todo : ", todo);
+      }
+    });
+});
+
 app.use('/todos', todoRoutes);
 
 app.listen(PORT, function() {

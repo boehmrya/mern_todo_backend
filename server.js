@@ -64,12 +64,12 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 
-todoRoutes.route('/delete/:id').post(function(req, res) {
+todoRoutes.route('/delete/:id').delete(function(req, res) {
     Todo.findOneAndDelete(req.params.id, function(err, todo) {
       if (err) {
         console.log(err)
       }
-      else{
+      else {
         console.log("Deleted Todo : ", todo);
       }
     });
